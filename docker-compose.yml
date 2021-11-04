@@ -1,0 +1,28 @@
+# This compose file defines the external services needed to run the application.
+# You can use this during development and run the application with the usual
+# `dotnet run` CLI or via Visual Studio.
+#
+# ```
+# docker-compose up -d
+# ```
+version: "3.4"
+services:
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: centeva
+      POSTGRES_PASSWORD: Centeva1234
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   logging:
+  #     driver: "none" # disable saving logs
+  #   ports:
+  #     - 1025:1025 # smtp server
+  #     - 8025:8025 # web ui
+volumes:
+  db_data:
